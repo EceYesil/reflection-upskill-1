@@ -1,58 +1,77 @@
+using System.Linq;
 using System.Reflection;
 
 [assembly: CLSCompliant(true)]
 
-namespace Reflection;
-
-public static class ReflectionOperations
+namespace Reflection
 {
-    public static string GetTypeName(object obj)
+    public static class ReflectionOperations
     {
-        throw new NotImplementedException();
-    }
+        public static string GetTypeName(object obj)
+        {
+            Type type = obj.GetType();
+            return type.Name;
+        }
 
-    public static string GetFullTypeName<T>()
-    {
-        throw new NotImplementedException();
-    }
+        public static string GetFullTypeName<T>()
+        {
+            Type type = typeof(T);
+            return type.FullName!;
+        }
 
-    public static string GetAssemblyQualifiedName<T>()
-    {
-        throw new NotImplementedException();
-    }
+        public static string GetAssemblyQualifiedName<T>()
+        {
+            Type type = typeof(T);
+            return type.AssemblyQualifiedName!;
+        }
 
-    public static string[] GetPrivateInstanceFields(object obj)
-    {
-        throw new NotImplementedException();
-    }
+        public static string[] GetPrivateInstanceFields(object obj)
+        {
+            Type type = obj.GetType();
+            FieldInfo[] fields = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+            return fields.Select(field => field.Name).ToArray();
+        }
 
-    public static string[] GetPublicStaticFields(object obj)
-    {
-        throw new NotImplementedException();
-    }
+        public static string[] GetPublicStaticFields(object obj)
+        {
+            Type type = obj.GetType();
+            FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.Static);
+            return fields.Select(field => field.Name).ToArray();
+        }
 
-    public static string?[] GetInterfaceDataDetails(object obj)
-    {
-        throw new NotImplementedException();
-    }
+        public static string?[] GetInterfaceDataDetails(object obj)
+        {
+            Type type = obj.GetType();
+            Type[] interfaces = type.GetInterfaces();
+            return interfaces.Select(i => i.FullName).ToArray();
+        }
 
-    public static string?[] GetConstructorsDataDetails(object obj)
-    {
-        throw new NotImplementedException();
-    }
+        public static string?[] GetConstructorsDataDetails(object obj)
+        {
+            Type type = obj.GetType();
+            ConstructorInfo[] constructors = type.GetConstructors();
+            return constructors.Select(c => c.ToString()).ToArray();
+        }
 
-    public static string?[] GetTypeMembersDataDetails(object obj)
-    {
-        throw new NotImplementedException();
-    }
+        public static string?[] GetTypeMembersDataDetails(object obj)
+        {
+            Type type = obj.GetType();
+            MemberInfo[] members = type.GetMembers();
+            return members.Select(m => m.ToString()).ToArray();
+        }
 
-    public static string?[] GetMethodDataDetails(object obj)
-    {
-        throw new NotImplementedException();
-    }
+        public static string?[] GetMethodDataDetails(object obj)
+        {
+            Type type = obj.GetType();
+            MethodInfo[] methods = type.GetMethods();
+            return methods.Select(m => m.ToString()).ToArray();
+        }
 
-    public static string?[] GetPropertiesDataDetails(object obj)
-    {
-        throw new NotImplementedException();
+        public static string?[] GetPropertiesDataDetails(object obj)
+        {
+            Type type = obj.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+            return properties.Select(p => p.ToString()).ToArray();
+        }
     }
 }
