@@ -1,49 +1,43 @@
-namespace Reflection.Tests;
+using static Reflection.ReflectionOperations;
 
-public class Employee : IEmployee
+namespace Reflection.Tests
 {
-    public Employee(int id, string name, int age, string role, int salaryPerAnnum, int salaryPerYear)
+    [AllowPrivateAccess]
+    public class Employee(int id, string name, int age, string role, int salaryPerAnnum, int salaryPerYear) : IEmployee
     {
-        this.Id = id;
-        this.Name = name;
-        this.Age = age;
-        this.Role = role;
-        this.SalaryPerAnnum = salaryPerAnnum;
-        this.SalaryPerYear = salaryPerYear;
-    }
+        public int Id { get; set; } = id;
 
-    public int Id { get; set; }
+        public string Name { get; set; } = name;
 
-    public string Name { get; set; }
+        public int Age { get; set; } = age;
 
-    public int Age { get; set; }
+        public string Role { get; set; } = role;
 
-    public string Role { get; set; }
+        public int SalaryPerAnnum { get; set; } = salaryPerAnnum;
 
-    public int SalaryPerAnnum { get; set; }
+        public int SalaryPerYear { get; set; } = salaryPerYear;
 
-    public int SalaryPerYear { get; set; }
+        public string GetOrganizationName()
+        {
+            string orgName = "EPAM";
+            Console.WriteLine(orgName);
+            return orgName;
+        }
 
-    public string GetOrganizationName()
-    {
-        string orgName = "EPAM";
-        Console.WriteLine(orgName);
-        return orgName;
-    }
+        public string GetDetails()
+        {
+            Console.WriteLine("Id: " + this.Id);
+            Console.WriteLine("Name: " + this.Name);
+            Console.WriteLine("Age: " + this.Age);
+            Console.WriteLine("Role: " + this.Role);
+            Console.WriteLine("Salary per Annum: " + this.SalaryPerAnnum);
+            return this.Id + this.Name + this.Age + this.SalaryPerAnnum;
+        }
 
-    public string GetDetails()
-    {
-        Console.WriteLine("Id: " + this.Id);
-        Console.WriteLine("Name: " + this.Name);
-        Console.WriteLine("Age: " + this.Age);
-        Console.WriteLine("Role: " + this.Role);
-        Console.WriteLine("Salary per Annum: " + this.SalaryPerAnnum);
-        return this.Id + this.Name + this.Age + this.SalaryPerAnnum;
-    }
-
-    public int GetSalaryPerMonth()
-    {
-        Console.WriteLine("Salary per Month: " + (this.SalaryPerAnnum / 12));
-        return this.SalaryPerAnnum / 12;
+        public int GetSalaryPerMonth()
+        {
+            Console.WriteLine("Salary per Month: " + (this.SalaryPerAnnum / 12));
+            return this.SalaryPerAnnum / 12;
+        }
     }
 }

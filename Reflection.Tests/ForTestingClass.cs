@@ -1,31 +1,35 @@
-﻿namespace Reflection.Tests;
+using static Reflection.ReflectionOperations;
 
-public class ForTestingClass
+namespace Reflection.Tests
 {
-    public const int StaticIntField = 10;
-
-    private int intField;
-
-    public ForTestingClass()
+    [AllowPrivateAccess]
+    public class ForTestingClass
     {
-        this.intField = -1;
-    }
+        public const int StaticIntField = 10;
 
-    public ForTestingClass(int intValue)
-    {
-        this.intField = intValue;
-    }
+        private int intField;
 
-    public int IntValue
-    {
-        get
+        public ForTestingClass()
         {
-            return this.intField;
+            this.intField = -1;
         }
 
-        set
+        public ForTestingClass(int intValue)
         {
-            this.intField = value < 0 ? 0 : value;
+            this.intField = intValue;
+        }
+
+        public int IntValue
+        {
+            get
+            {
+                return this.intField;
+            }
+
+            set
+            {
+                this.intField = value < 0 ? 0 : value;
+            }
         }
     }
 }

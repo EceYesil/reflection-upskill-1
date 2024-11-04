@@ -158,7 +158,7 @@ namespace Reflection.Tests
         public void GetPrivateInstanceFields(object obj, string[] expected)
         {
             // Act
-            string[] actual = ReflectionOperations.GetPrivateInstanceFields(obj);
+            string?[] actual = ReflectionOperations.GetPrivateInstanceFields(obj);
 
             // Assert
             Assert.That(actual, Is.EquivalentTo(expected));
