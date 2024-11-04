@@ -3,6 +3,7 @@ using System.Reflection;
 // [assembly: CLSCompliant(true)] //
 namespace Reflection
 {
+#pragma warning disable S3011
     public static class ReflectionOperations
     {
         public static string GetTypeName(object obj)
@@ -28,11 +29,6 @@ namespace Reflection
         {
             ArgumentNullException.ThrowIfNull(obj);
             Type type = obj.GetType();
-            if (!type.IsDefined(typeof(AllowPrivateAccessAttribute), inherit: true))
-            {
-                throw new InvalidOperationException("Access to private fields is not allowed.");
-            }
-
             FieldInfo[] fields = type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
             return fields.Select(field => field.Name).ToArray();
         }
