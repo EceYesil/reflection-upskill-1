@@ -1,6 +1,7 @@
-﻿namespace Reflection.Tests;
-
-public interface IEmployee
+namespace Reflection.Tests
 {
-    string GetOrganizationName();
+    public interface IEmployee
+    {
+        string GetOrganizationName();
+    }
 }
