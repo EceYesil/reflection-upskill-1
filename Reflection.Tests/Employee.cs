@@ -1,21 +1,30 @@
-using static Reflection.ReflectionOperations;
-
 namespace Reflection.Tests
 {
     [AllowPrivateAccess]
-    public class Employee(int id, string name, int age, string role, int salaryPerAnnum, int salaryPerYear) : IEmployee
+    public class Employee : IEmployee
     {
-        public int Id { get; set; } = id;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0290:Use primary constructor", Justification = "Primary constructors are not used for this class due")]
+        public Employee(int id, string name, int age, string role, int salaryPerAnnum, int salaryPerYear)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Age = age;
+            this.Role = role;
+            this.SalaryPerAnnum = salaryPerAnnum;
+            this.SalaryPerYear = salaryPerYear;
+        }
 
-        public string Name { get; set; } = name;
+        public int Id { get; set; }
 
-        public int Age { get; set; } = age;
+        public string Name { get; set; }
 
-        public string Role { get; set; } = role;
+        public int Age { get; set; }
 
-        public int SalaryPerAnnum { get; set; } = salaryPerAnnum;
+        public string Role { get; set; }
 
-        public int SalaryPerYear { get; set; } = salaryPerYear;
+        public int SalaryPerAnnum { get; set; }
+
+        public int SalaryPerYear { get; set; }
 
         public string GetOrganizationName()
         {
