@@ -30,7 +30,8 @@ public static string GetTypeName(object obj)
 ```cs
 public static string GetTypeName(object obj)
 {
-
+    Type type = obj.GetType();
+    return type.Name;
 }
 ```
 
